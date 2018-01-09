@@ -29,5 +29,30 @@
 
 这些 Appender 底层使用 [Java Producer Library](https://help.aliyun.com/document_detail/43758.html) 完成数据的写入，数据吞吐量极高。
 
+### 日志存储
+
+Java 日志存储在 Loghub上。 LogHub 覆盖 Kafka 100%功能，并提供完整监控、报警等功能数据，弹性伸缩等（可支持PB/Day规模），使用成本为自建50%以下。
+
 ### 日志分析
+
+可以通过 [LogSearch/Analytics](https://help.aliyun.com/document_detail/43772.html) 可以对 Java 应用产生的日志进行实时分析。
+
+写到日志服务中的日志的样式如下：
+```
+level: ERROR
+location: com.aliyun.openservices.log.logback.example.LogbackAppenderExample.main(LogbackAppenderExample.java:18)
+message: This is an error message.
+thread: main
+time: 2018-01-02T03:15+0000
+```
+
+#### 1. 统计过去1小时发生Error最多的3个位置
+
+语法示例
+```
+level is ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY count DESC LIMIT 3
+```
+使用饼状图进行结果展示
+
+
 
