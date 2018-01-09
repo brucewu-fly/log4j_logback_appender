@@ -110,6 +110,15 @@ level: ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY c
 使用饼状图进行结果展示
 ![](/pics/1.png)
 
+#### 2. 统计过去15分钟各种日志级别产生的日志条数
+
+语法示例
+```
+| select level ,count(*) as count GROUP BY level ORDER BY count DESC
+```
+使用柱状图进行结果展示
+![](/pics/2.png)
+
 
 
 
