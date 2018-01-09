@@ -105,7 +105,7 @@ time: 2018-01-02T03:15+0000
 
 语法示例
 ```
-level is ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY count DESC LIMIT 3
+level: ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY count DESC LIMIT 3
 ```
 使用饼状图进行结果展示
 ![](/pics/1.png)
