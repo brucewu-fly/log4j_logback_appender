@@ -108,6 +108,7 @@ time: 2018-01-02T03:15+0000
 level: ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY count DESC LIMIT 3
 ```
 使用饼状图进行结果展示
+
 ![](/pics/1.png)
 
 #### 2. 统计过去15分钟各种日志级别产生的日志条数
@@ -117,6 +118,7 @@ level: ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY c
 | select level ,count(*) as count GROUP BY level ORDER BY count DESC
 ```
 使用柱状图进行结果展示
+
 ![](/pics/2.png)
 
 
