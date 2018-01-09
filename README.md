@@ -37,6 +37,8 @@ Java 日志存储在 Loghub上。 LogHub 覆盖 Kafka 100%功能，并提供完�
 
 可以通过 [LogSearch/Analytics](https://help.aliyun.com/document_detail/43772.html) 可以对 Java 应用产生的日志进行实时分析。
 
+#### 日志样式
+
 写到日志服务中的日志的样式如下：
 ```
 level: ERROR
@@ -46,7 +48,18 @@ thread: main
 time: 2018-01-02T03:15+0000
 ```
 
-#### 1. 统计过去1小时发生Error最多的3个位置
+#### 开启查询分析
+
++ 登录 [日志服务管理控制台](ttps://sls.console.aliyun.com/#/)。
++ 选择目标项目，单击项目名称或者单击右侧的 **管理**。
++ 选择目标日志库并单击日志索引列下的 **查询**。
++ 单击右上角的 **设置查询分析 > 设置**。
++ 进入设置菜单
+![](/pics/3.png)
+
+#### 分析实例
+
+##### 1. 统计过去1小时发生Error最多的3个位置
 
 语法示例
 ```
@@ -56,7 +69,7 @@ level: ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY c
 
 ![](/pics/1.png)
 
-#### 2. 统计过去15分钟各种日志级别产生的日志条数
+##### 2. 统计过去15分钟各种日志级别产生的日志条数
 
 语法示例
 ```
