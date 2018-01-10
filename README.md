@@ -82,11 +82,10 @@ level: ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY c
 
 ##### 3. 日志上下文查询
 对于任意一条日志，能够精确还原原始日志文件上下文日志信息。
-
-点击上下文浏览链接
+**点击上下文浏览链接**
 ![](/pics/4.png)
 
-查看选中日志周边的日志信息
+**查看选中日志周边的日志信息**
 ![](/pics/5.png)
 
 参阅: [上下文查询](https://help.aliyun.com/document_detail/48148.html)
