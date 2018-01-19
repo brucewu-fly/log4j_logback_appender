@@ -28,7 +28,7 @@
 + [aliyun-log-log4j2-appender](https://github.com/aliyun/aliyun-log-log4j2-appender)
 + [aliyun-log-logback-appender](https://github.com/aliyun/aliyun-log-logback-appender)
 
-这些 Appender 底层使用 [Java Producer Library](https://help.aliyun.com/document_detail/43758.html) 完成数据的写入，数据吞吐量极高。
+这些 Appender 底层使用 [aliyun-log-producer-java](https://github.com/aliyun/aliyun-log-producer-java) 完成数据的写入，数据吞吐量极高。
 
 ### 日志存储
 
