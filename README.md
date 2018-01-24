@@ -14,6 +14,7 @@
 ## 传统方案的痛点与挑战
 
 + 需要自己搭建和维护 ELK 集群。
++ 无法方便地对日志上下文信息进行查询。
 
 
 ## 日志服务解决方案
@@ -27,7 +28,7 @@
 + [aliyun-log-log4j2-appender](https://github.com/aliyun/aliyun-log-log4j2-appender)
 + [aliyun-log-logback-appender](https://github.com/aliyun/aliyun-log-logback-appender)
 
-这些 Appender 底层使用 [Java Producer Library](https://help.aliyun.com/document_detail/43758.html) 完成数据的写入，数据吞吐量极高。
+这些 Appender 底层使用 [aliyun-log-producer-java](https://github.com/aliyun/aliyun-log-producer-java) 完成数据的写入，数据吞吐量极高。
 
 ### 日志存储
 
@@ -80,6 +81,14 @@ level: ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY c
 
 ![](/pics/2.png)
 
+##### 3. 日志上下文查询
+对于任意一条日志，能够精确还原原始日志文件上下文日志信息。
 
+**点击上下文浏览链接**
+![](/pics/4.png)
 
+**查看选中日志周边的日志信息**
+![](/pics/5.png)
+
+参阅: [上下文查询](https://help.aliyun.com/document_detail/48148.html)
 
