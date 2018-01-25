@@ -140,7 +140,7 @@ log4j.appender.loghub.timeZone=UTC
 写到日志服务中的日志的样式如下：
 ```
 level: ERROR
-location: com.aliyun.openservices.log.logback.example.Log4jAppenderExample.main(LogbackAppenderExample.java:18)
+location: com.aliyun.openservices.log.logback.example.Log4jAppenderExample.main(Log4jAppenderExample.java:18)
 message: This is an error message.
 thread: main
 time: 2018-01-02T03:15+0000
