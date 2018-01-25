@@ -79,7 +79,7 @@
 
 #### 接入 Appender
 
-这里以aliyun-log-log4j-appender为例。
+这里以 aliyun-log-log4j-appender 为例。
 
 ##### 1. maven 工程中引入依赖
 ```
