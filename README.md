@@ -7,14 +7,14 @@
 * [采集端 (Java系列)](#采集端-java系列)
    * [Appender 介绍与使用](#appender-介绍与使用)
       * [接入 Appender](#接入-appender)
-         * [1. maven 工程中引入依赖](#1-maven-工程中引入依赖)
-         * [2. 修改配置文件](#2-修改配置文件)
       * [查询与分析](#查询与分析)
          * [开启查询分析](#开启查询分析)
          * [分析实例](#分析实例)
             * [1. 统计过去1小时发生Error最多的3个位置](#1-统计过去1小时发生error最多的3个位置)
             * [2. 统计过去15分钟各种日志级别产生的日志条数](#2-统计过去15分钟各种日志级别产生的日志条数)
             * [3. 日志上下文查询](#3-日志上下文查询)
+            * [4. 统计过去1小时，登录次数最多的三个用户](#4-统计过去1小时登录次数最多的三个用户)
+            * [5. 统计过去15分钟，每个用户的付款总额](#5-统计过去15分钟每个用户的付款总额)
 
 ## 日志中心化之路
 
@@ -79,24 +79,9 @@
 
 #### 接入 Appender
 
-这里以 aliyun-log-log4j-appender 为例。
+可参考 [aliyun-log-log4j-appender](https://github.com/aliyun/aliyun-log-log4j-appender) 的**配置步骤**部分接入 appender。
 
-##### 1. maven 工程中引入依赖
-```
-<dependency>
-    <groupId>com.google.protobuf</groupId>
-    <artifactId>protobuf-java</artifactId>
-    <version>2.5.0</version>
-</dependency>
-<dependency>
-    <groupId>com.aliyun.openservices</groupId>
-    <artifactId>aliyun-log-log4j-appender</artifactId>
-    <version>0.1.5</version>
-</dependency>
-```
-
-##### 2. 修改配置文件
-以配置文件 log4j.properties 为例（不存在则在项目根目录创建），配置 Loghub 相关的 appender 与 Logger，例如：
+配置文件`log4j.properties`的内容如下：
 ```
 log4j.rootLogger=WARN,loghub
 
@@ -111,39 +96,27 @@ log4j.appender.loghub.endpoint=[your project endpoint]
 #用户身份标识，必选参数
 log4j.appender.loghub.accessKeyId=[your accesskey id]
 log4j.appender.loghub.accessKey=[your accesskey]
-
-#被缓存起来的日志的发送超时时间，如果缓存超时，则会被立即发送，单位是毫秒，默认值为3000，最小值为10，可选参数
-log4j.appender.loghub.packageTimeoutInMS=3000
-#每个缓存的日志包中包含日志数量的最大值，不能超过 4096，可选参数
-log4j.appender.loghub.logsCountPerPackage=4096
-#每个缓存的日志包的大小的上限，不能超过 5MB，单位是字节，可选参数
-log4j.appender.loghub.logsBytesPerPackage=5242880
-#Appender 实例可以使用的内存的上限，单位是字节，默认是 100MB，可选参数
-log4j.appender.loghub.memPoolSizeInByte=1048576000
-#指定I/O线程池最大线程数量，主要用于发送数据到日志服务，默认是8，可选参数
-log4j.appender.loghub.maxIOThreadSizeInPool=8
-#指定发送失败时重试的次数，如果超过该值，会把失败信息通过Log4j的LogLog进行记录，默认是3，可选参数
-log4j.appender.loghub.retryTimes=3
-
-#指定日志主题
-log4j.appender.loghub.topic = [your topic]
-
-#输出到日志服务的时间格式，使用 Java 中 SimpleDateFormat 格式化时间，默认是 ISO8601，可选参数
-log4j.appender.loghub.timeFormat=yyyy-MM-dd'T'HH:mmZ
-log4j.appender.loghub.timeZone=UTC
 ```
 
 #### 查询与分析
 
-通过上述方式配置好 appender 后，Java 应用产生的日志会被自动发往日志服务。可以通过 [LogSearch/Analytics](https://help.aliyun.com/document_detail/43772.html) 对这些日志实时查询和分析。
+通过上述方式配置好 appender 后，Java 应用产生的日志会被自动发往日志服务。可以通过 [LogSearch/Analytics](https://help.aliyun.com/document_detail/43772.html) 对这些日志实时查询和分析。本文提供的样例的日志格式如下：
 
-写到日志服务中的日志的样式如下：
+记录用户登录行为的日志
 ```
-level: ERROR
-location: com.aliyun.openservices.log.log4j.example.Log4jAppenderExample.main(Log4jAppenderExample.java:18)
-message: This is an error message.
-thread: main
-time: 2018-01-02T03:15+0000
+level:  INFO  
+location:  com.aliyun.log4jappendertest.Log4jAppenderBizDemo.login(Log4jAppenderBizDemo.java:38)
+message:  User login successfully. requestID=id4 userID=user8  
+thread:  main  
+time:  2018-01-26T15:31+0000  
+```
+记录用户购买行为的日志
+```
+level:  INFO  
+location:  com.aliyun.log4jappendertest.Log4jAppenderBizDemo.order(Log4jAppenderBizDemo.java:46)
+message:  Place an order successfully. requestID=id44 userID=user8 itemID=item3 amount=9  
+thread:  main  
+time:  2018-01-26T15:31+0000 
 ```
 
 ##### 开启查询分析
@@ -159,15 +132,16 @@ time: 2018-01-02T03:15+0000
 
 ##### 分析实例
 
+以下视频链接包含了下述5个分析实例。
+
+[视频演示](http://wubo-test-bucket.oss-cn-beijing.aliyuncs.com/video/%E6%97%A5%E5%BF%97%E4%B8%8A%E4%BA%91%E5%AE%A3%E4%BC%A0%E7%89%87.mp4)
+
 ###### 1. 统计过去1小时发生Error最多的3个位置
 
 语法示例
 ```
 level: ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY count DESC LIMIT 3
 ```
-使用饼状图进行结果展示
-
-![1](/pics/1.png)
 
 ###### 2. 统计过去15分钟各种日志级别产生的日志条数
 
@@ -175,20 +149,22 @@ level: ERROR | select location ,count(*) as count GROUP BY  location  ORDER BY c
 ```
 | select level ,count(*) as count GROUP BY level ORDER BY count DESC
 ```
-使用柱状图进行结果展示
-
-![2](/pics/2.png)
 
 ###### 3. 日志上下文查询
 对于任意一条日志，能够精确还原原始日志文件上下文日志信息。
 
-**点击上下文浏览链接**
-
-![4](/pics/4.png)
-
-**查看选中日志周边的日志信息**
-
-![5](/pics/5.png)
-
 参阅: [上下文查询](https://help.aliyun.com/document_detail/48148.html)
 
+###### 4. 统计过去1小时，登录次数最多的三个用户
+
+语法示例
+```
+login | SELECT regexp_extract(message, 'userID=(?<userID>[a-zA-Z\d]+)', 1) AS userID, count(*) as count GROUP BY userID ORDER BY count DESC LIMIT 3
+```
+
+###### 5. 统计过去15分钟，每个用户的付款总额
+
+语法示例
+```
+order | SELECT regexp_extract(message, 'userID=(?<userID>[a-zA-Z\d]+)', 1) AS userID, sum(cast(regexp_extract(message, 'amount=(?<amount>[a-zA-Z\d]+)', 1) AS double)) AS amount GROUP BY userID
+```
