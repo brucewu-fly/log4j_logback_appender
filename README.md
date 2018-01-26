@@ -132,9 +132,9 @@ time:  2018-01-26T15:31+0000
 
 ##### 分析实例
 
-以下视频链接包含了下述5个分析实例。
+以下视频包含了下述5个分析实例。
 
-[视频演示](http://wubo-test-bucket.oss-cn-beijing.aliyuncs.com/video/%E6%97%A5%E5%BF%97%E4%B8%8A%E4%BA%91%E5%AE%A3%E4%BC%A0%E7%89%87.mp4)
+[![Watch the video](/pics/视频截图.png)](http://wubo-test-bucket.oss-cn-beijing.aliyuncs.com/video/%E6%97%A5%E5%BF%97%E4%B8%8A%E4%BA%91%E5%AE%A3%E4%BC%A0%E7%89%87.mp4)
 
 ###### 1. 统计过去1小时发生Error最多的3个位置
 
