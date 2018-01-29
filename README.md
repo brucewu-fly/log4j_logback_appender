@@ -136,14 +136,7 @@ time:  2018-01-26T15:31+0000
 
 以下视频包含了下述5个分析实例。
 
-<script src='http://api.video.taobao.com//video/getPlayerJS'>
-</script>
-<script src='http://api.video.taobao.com//video/embedVideo?vid=50073510333&uid=2450842572&tid=1&autoplay=true'>
-</script>
-
-http://cloud.video.taobao.com//play/u/2450842572/p/1/e/1/t/1/50073510333.swf
-
-http://cloud.video.taobao.com//play/u/2450842572/p/1/e/6/t/1/50073510333.mp4
+<video src="http://cloud.video.taobao.com//play/u/2450842572/p/1/e/6/t/1/50073510333.mp4" controls=""></video>
 
 
 ###### 1. 统计过去1小时发生Error最多的3个位置
