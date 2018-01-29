@@ -134,7 +134,15 @@ time:  2018-01-26T15:31+0000
 
 以下视频包含了下述5个分析实例。
 
-[![Watch the video](/pics/视频截图.png)](http://wubo-test-bucket.oss-cn-beijing.aliyuncs.com/video/%E6%97%A5%E5%BF%97%E4%B8%8A%E4%BA%91%E5%AE%A3%E4%BC%A0%E7%89%87.mp4)
+<script src='http://api.video.taobao.com//video/getPlayerJS'>
+</script>
+<script src='http://api.video.taobao.com//video/embedVideo?vid=50073510333&uid=2450842572&tid=1&autoplay=true'>
+</script>
+
+http://cloud.video.taobao.com//play/u/2450842572/p/1/e/1/t/1/50073510333.swf
+
+http://cloud.video.taobao.com//play/u/2450842572/p/1/e/6/t/1/50073510333.mp4
+
 
 ###### 1. 统计过去1小时发生Error最多的3个位置
 
