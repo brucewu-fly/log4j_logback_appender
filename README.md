@@ -1,5 +1,3 @@
-# Java日志上云三剑客：Log4J/LogBack/Producer Lib
-
 ## 内容
 
 * [日志中心化之路](#日志中心化之路)
