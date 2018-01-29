@@ -173,6 +173,6 @@ order | SELECT regexp_extract(message, 'userID=(?<userID>[a-zA-Z\d]+)', 1) AS us
 ## 技术支持
 大家在使用过程中遇到的任何问题，可以加钉钉群11775223联系我们：
 
-![钉钉](/pics/钉钉.png)
+<img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/cf1f7f219c2e268a8c3d1b5bf8bd4e1f.png" width="50%" height="50%" alt="扫我进群">
 
 扫我进群
